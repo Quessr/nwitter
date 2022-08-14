@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Navigation from "components/Navigation";
@@ -7,7 +7,7 @@ import Profile from "routes/Profile";
 
 const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       {isLoggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {isLoggedIn ? (
@@ -34,7 +34,7 @@ const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
         )}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
