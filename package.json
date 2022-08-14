@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "cross-env REACT_APP_DEPLOY=GITHUB_PAGES gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +46,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://seraheo.github.io/nwitter"
+  "homepage": "https://seraheo.github.io/nwitter",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }

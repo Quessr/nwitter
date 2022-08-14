@@ -1,13 +1,16 @@
 import React from "react";
-import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 
+const isDeployGithubPages = process.env.REACT_APP_DEPLOY === 'GITHUB_PAGES';
+const Router = isDeployGithubPages ? HashRouter : BrowserRouter;
+
 const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
   return (
-    <HashRouter>
+    <Router>
       {isLoggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {isLoggedIn ? (
@@ -20,7 +23,7 @@ const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
               display: "flex",
               justifyContent: "center",
             }}
-          > 
+          >
             <Route path="/" element={<Home userObj={userObj} />} />
             <Route
               path="/profile"
@@ -34,7 +37,7 @@ const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
         )}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </HashRouter>
+    </Router>
   );
 };
 
